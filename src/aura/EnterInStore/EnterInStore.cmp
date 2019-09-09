@@ -1,0 +1,38 @@
+<!--
+ - Created by user on 06-Sep-19.
+ -->
+
+<aura:component description="EnterInStore" implements="flexipage:availableForAllPageTypes"
+                controller="EnterInStoreController">
+    <aura:attribute type="CustomAccount__c" name="CustomAccount"/>
+    <aura:attribute type="String" name="CustomAccountId"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!v.CustomAccountId == null}">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="12" class="main">
+                <div>
+                    <form class="slds-form--stacked">
+                        <ui:inputtext aura:id="Login" label=" User Login " value="{!v.CustomAccount.Login__c}"
+                                      required="true" size="20"/>
+                        <br/>
+                        <ui:inputSecret aura:id="Password" label=" Password " value="{!v.CustomAccount.Password__c}"
+                                        required="true" size="20"/>
+                        <br/>
+                        <div class="slds-float--left slds-button_brand">
+                            <div class="slds-grid buttons">
+                                <lightning:button variant="brand" label="Login" title="Login" iconPosition="Left"
+                                                  onclick="{!c.login}"/>
+                                <lightning:button variant="brand" label="Regestration" title="Regestration"
+                                                  iconPosition="Right"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <aura:set attribute="else">
+            <div aura:id="OrderConfirm"
+                 class="OrderConfirm"/>
+        </aura:set>
+    </aura:if>
+</aura:component>
